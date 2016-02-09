@@ -24,9 +24,40 @@ public class NumbersToWords {
     ones.put('8', "eight");
     ones.put('9', "nine");
     dictionary.add(ones);
+    HashMap tens = new HashMap();
+    tens.put('0', "");
+    tens.put('1', "ten");
+    tens.put('2', "twenty");
+    tens.put('3', "thirty");
+    tens.put('4', "forty");
+    tens.put('5', "fifty");
+    tens.put('6', "sixty");
+    tens.put('7', "seventy");
+    tens.put('8', "eighty");
+    tens.put('9', "ninety");
+    dictionary.add(tens);
+    HashMap hundreds = new HashMap();
+    hundreds.put('0', "");
+    hundreds.put('1', "one hundred");
+    hundreds.put('2', "two hundred");
+    hundreds.put('3', "three hundred");
+    hundreds.put('4', "four hundred");
+    hundreds.put('5', "five hundred");
+    hundreds.put('6', "six hundred");
+    hundreds.put('7', "seven hundred");
+    hundreds.put('8', "eight hundred");
+    hundreds.put('9', "nine hundred");
+    dictionary.add(hundreds);
     for (Integer i = 0; i < stringNumber.length(); i++) {
-    result =  dictionary.get(i).get(stringNumber.charAt(i)) + result;
+      if ( i == 3 ) {
+        result = "thousand " + result;
+        dictionary.add(ones);
+        dictionary.add(tens);
+        dictionary.add(hundreds);
+      }
+    result =  dictionary.get(i).get(stringNumber.charAt(i)) + " " + result;
     }
+    result = result.trim();
     return result;
   }
 }
