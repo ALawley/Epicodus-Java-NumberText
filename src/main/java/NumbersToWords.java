@@ -1,9 +1,31 @@
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Map;
+import spark.ModelAndView;
+import spark.template.velocity.VelocityTemplateEngine;
+import static spark.Spark.*;
 
 public class NumbersToWords {
   public static void main(String[] args) {
+    String layout = "templates/layout.vtl";
 
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/home.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/number-text", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/number-text.vtl");
+
+      String number = request.queryParams("number");
+      Integer integerNumber = Integer.parseInt(number);
+      String numberText = numberConvert(integerNumber);
+
+      model.put("number", numberText);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 
   public static String numberConvert(Integer number) {
