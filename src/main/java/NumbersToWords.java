@@ -48,27 +48,44 @@ public class NumbersToWords {
     hundreds.put('8', "eight hundred");
     hundreds.put('9', "nine hundred");
     dictionary.add(hundreds);
+    HashMap teens = new HashMap();
+    teens.put('0', "ten");
+    teens.put('1', "eleven");
+    teens.put('2', "twelve");
+    teens.put('3', "thirteen");
+    teens.put('4', "fourteen");
+    teens.put('5', "fifteen");
+    teens.put('6', "sixteen");
+    teens.put('7', "seventeen");
+    teens.put('8', "eighteen");
+    teens.put('9', "nineteen");
     Integer j = 0;
     for (Integer i = 0; i < stringNumber.length(); i++) {
-      if ( i == 12 ) {
-        result = "trillion " + result;
-        j = 0;
-      }
-      if ( i == 9 ) {
-        result = "billion " + result;
-        j = 0;
-      }
-      if ( i == 6 ) {
-        result = "million " + result;
-        j = 0;
-      }
-      if ( i == 3 ) {
-        result = "thousand " + result;
-        j = 0;
-      }
-    result =  dictionary.get(j).get(stringNumber.charAt(i)) + " " + result;
-    j++;
-    }
+        if ( i == 12 ) {
+          result = "trillion " + result;
+          j = 0;
+        }
+        if ( i == 9 ) {
+          result = "billion " + result;
+          j = 0;
+        }
+        if ( i == 6 ) {
+          result = "million " + result;
+          j = 0;
+        }
+        if ( i == 3 ) {
+          result = "thousand " + result;
+          j = 0;
+        }
+        if ( j == 0 && stringNumber.length() > i + 1 && stringNumber.charAt(i + 1) == '1') {
+          result = teens.get(stringNumber.charAt(i)) + " " + result;
+          i++;
+          j += 2;
+        } else {
+          result =  dictionary.get(j).get(stringNumber.charAt(i)) + " " + result;
+          j++;
+          }
+        }
     result = result.trim();
     return result;
   }

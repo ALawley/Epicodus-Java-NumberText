@@ -23,4 +23,9 @@ public class NumbersToWordsTest {
     NumbersToWords newNumber = new NumbersToWords();
     assertEquals("one hundred twenty eight million five hundred eighty six thousand two hundred fifty seven", newNumber.numberConvert(128586257));
   }
+  @Test
+  public void numberConvert_NumberWithTeens_17313() {
+    NumbersToWords newNumber = new NumbersToWords();
+    assertEquals("seventeen thousand three hundred thirteen", newNumber.numberConvert(17313));
+  }
 }
