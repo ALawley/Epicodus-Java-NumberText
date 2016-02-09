@@ -18,4 +18,9 @@ public class NumbersToWordsTest {
     NumbersToWords newNumber = new NumbersToWords();
     assertEquals("five hundred eighty six thousand two hundred fifty seven", newNumber.numberConvert(586257));
   }
+  @Test
+  public void numberConvert_ElevenDigitNumber_128586257() {
+    NumbersToWords newNumber = new NumbersToWords();
+    assertEquals("one hundred twenty eight million five hundred eighty six thousand two hundred fifty seven", newNumber.numberConvert(128586257));
+  }
 }

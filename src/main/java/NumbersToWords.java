@@ -48,14 +48,26 @@ public class NumbersToWords {
     hundreds.put('8', "eight hundred");
     hundreds.put('9', "nine hundred");
     dictionary.add(hundreds);
+    Integer j = 0;
     for (Integer i = 0; i < stringNumber.length(); i++) {
+      if ( i == 12 ) {
+        result = "trillion " + result;
+        j = 0;
+      }
+      if ( i == 9 ) {
+        result = "billion " + result;
+        j = 0;
+      }
+      if ( i == 6 ) {
+        result = "million " + result;
+        j = 0;
+      }
       if ( i == 3 ) {
         result = "thousand " + result;
-        dictionary.add(ones);
-        dictionary.add(tens);
-        dictionary.add(hundreds);
+        j = 0;
       }
-    result =  dictionary.get(i).get(stringNumber.charAt(i)) + " " + result;
+    result =  dictionary.get(j).get(stringNumber.charAt(i)) + " " + result;
+    j++;
     }
     result = result.trim();
     return result;
